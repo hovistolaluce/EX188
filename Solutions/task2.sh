@@ -17,3 +17,10 @@ sudo podman generate systemd reg-httpd | sudo tee -a /usr/lib/systemd/system/reg
 
 sudo systemctl daemon-reload
 sudo systemctl restart reg-httpd
+
+# Eintragung in Registry als insecure:
+unqualified-search-registries = ["registry.do180.lab:5000","registry.access.redhat.com", "registry.redhat.io", "docker.io"]
+[[registry]]
+location = "registry.do180.lab:5000"
+insecure = true
+
