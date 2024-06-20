@@ -17,6 +17,7 @@ sudo semanage fcontext -a -t container_file_t /web/index.html
 sudo restorecon /web
 sudo restorecon /web/index.html
 
+# 
 sudo podman generate systemd reg-httpd | sudo tee -a /usr/lib/systemd/system/reg-httpd.service
 
 sudo systemctl daemon-reload
