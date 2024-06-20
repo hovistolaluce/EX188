@@ -8,8 +8,12 @@ sudo podman run -d \
         -v /web:/usr/local/apache2/htdocs \
         registry.do180.lab:5000/httpd
 
+# SELinux verbietet den Zugriff auf das Host-Verzeichnis als Volume
+# zum Nutzen von semanage: yum install policycoreutils-python-utils
+# neuer Kontext wird als Richtlinie übernommen
 sudo semanage fcontext -a -t container_file_t /web
 sudo semanage fcontext -a -t container_file_t /web/index.html
+# Zurücksetzen des File Kontextes (auf neue Richtline)
 sudo restorecon /web
 sudo restorecon /web/index.html
 
